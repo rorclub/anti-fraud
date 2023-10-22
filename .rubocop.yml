@@ -1,0 +1,21 @@
+inherit_gem:
+  rubocop-shopify: rubocop.yml
+require:
+  - rubocop-rails
+  - rubocop-rspec
+AllCops:
+  TargetRubyVersion: 3.2.2
+  Exclude:
+    - .irbrc
+    - Gemfile.lock
+    - Guardfile
+    - Rakefile
+    - config.ru
+    - config/**/*
+    - bin/**/*
+    - db/**/*
+    - lib/**/*
+    - node_modules/**/*
+    - script/**
+    - 'vendor/'
+  DisabledByDefault: true
