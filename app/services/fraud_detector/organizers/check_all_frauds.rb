@@ -7,6 +7,7 @@ module FraudDetector
       organize(
         Interactors::TooManyTransactionsInARow,
         Interactors::TansactionsAboveACertainAmountInAGivenPeriod,
+        Interactors::UserWithChargeBack,
       )
     end
   end
