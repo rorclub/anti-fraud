@@ -15,6 +15,7 @@ module Transactions
       private
 
       def charge!
+        # fake charge
         true
       end
     end
