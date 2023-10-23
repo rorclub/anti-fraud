@@ -2,7 +2,7 @@
 
 class Api::V1::TransactionsController < ApplicationController
   def charge
-    result = Transactions::Organizers::FraudDetector.call(params: params)
+    result = Transactions::Organizers::Charge.call(params: params)
 
     recommendation = :approve
     recommendation = :deny if result.failure?
