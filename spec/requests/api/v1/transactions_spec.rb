@@ -19,6 +19,8 @@ RSpec.describe("Api::V1::TransactionsController", type: :request) do
 
     context "success" do
       it "status of response is success" do
+        Rails.cache.clear
+
         post("/api/v1/charge", params: params)
 
         json = JSON.parse(response.body)
@@ -31,6 +33,8 @@ RSpec.describe("Api::V1::TransactionsController", type: :request) do
 
     context "detect frauds" do
       it "deny too many transactions" do
+        Rails.cache.clear
+
         3.times do
           post("/api/v1/charge", params: params)
         end
@@ -45,9 +49,11 @@ RSpec.describe("Api::V1::TransactionsController", type: :request) do
       end
 
       it "deny transactions above a certain amount in a given period" do
+        Rails.cache.clear
+
         6.times do
           post("/api/v1/charge", params: params)
-          sleep(0.5)
+          sleep(0.7)
         end
 
         expect(response).to(have_http_status(:ok))
@@ -60,6 +66,8 @@ RSpec.describe("Api::V1::TransactionsController", type: :request) do
       end
 
       it "deny user with charge back" do
+        Rails.cache.clear
+
         params[:user_id] = "000-id-with-cbk"
 
         post("/api/v1/charge", params: params)

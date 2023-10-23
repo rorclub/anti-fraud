@@ -20,7 +20,7 @@ module FraudDetector
         if Rails.cache.exist?(key)
           raise "Too many transactions in a row"
         else
-          Rails.cache.write(key, true, expires_in: 1.seconds)
+          Rails.cache.write(key, true, expires_in: 0.5.seconds)
         end
       end
     end
